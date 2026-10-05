@@ -62,7 +62,7 @@ h2 {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border-radius: 0 6px 0 6px;
+  border-radius: 0 6px;
 }
 
 .container-abs .content {
