@@ -1,8 +1,8 @@
 function plural(n, one, few, many) {
   const mod10 = n % 10;
   const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
+  if (mod10 === 1 && mod100 !== 11) {return one;}
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) {return few;}
   return many;
 }
 
@@ -11,8 +11,8 @@ export function timeAgo(date) {
   const now = new Date();
   const diffSec = Math.floor((now - past) / 1000);
 
-  if (diffSec < 0) return 'в будущем';
-  if (diffSec < 5) return 'только что';
+  if (diffSec < 0) {return 'в будущем';}
+  if (diffSec < 5) {return 'только что';}
 
   const units = [
     {sec: 60, names: ['секунда', 'секунды', 'секунд'], div: 1},
