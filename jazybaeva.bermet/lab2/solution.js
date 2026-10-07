@@ -1,4 +1,3 @@
-
 function plural(n, one, few, many) {
   const mod10 = n % 10;
   const mod100 = n % 100;
@@ -16,12 +15,12 @@ export function timeAgo(date) {
   if (diffSec < 5) return 'только что';
 
   const units = [
-    { sec: 60, names: ['секунда', 'секунды', 'секунд'], div: 1 },
-    { sec: 3600, names: ['минута', 'минуты', 'минут'], div: 60 },
-    { sec: 86400, names: ['час', 'часа', 'часов'], div: 3600 },
-    { sec: 2592000, names: ['день', 'дня', 'дней'], div: 86400 },
-    { sec: 31536000, names: ['месяц', 'месяца', 'месяцев'], div: 2592000 },
-    { sec: Infinity, names: ['год', 'года', 'лет'], div: 31536000 },
+    {sec: 60, names: ['секунда', 'секунды', 'секунд'], div: 1},
+    {sec: 3600, names: ['минута', 'минуты', 'минут'], div: 60},
+    {sec: 86400, names: ['час', 'часа', 'часов'], div: 3600},
+    {sec: 2592000, names: ['день', 'дня', 'дней'], div: 86400},
+    {sec: 31536000, names: ['месяц', 'месяца', 'месяцев'], div: 2592000},
+    {sec: Infinity, names: ['год', 'года', 'лет'], div: 31536000},
   ];
 
   for (const u of units) {
