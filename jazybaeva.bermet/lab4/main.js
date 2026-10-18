@@ -1,6 +1,6 @@
 import {
   Travel,
-  groupByVisitedCount,
+  groupTravelsByCountryCount,
   getAllCountries,
   filterByCountry,
   groupTravelersByCountry,
@@ -131,7 +131,7 @@ countryForm.addEventListener('submit', (e) => {
 loadFromStorage();
 render();
 
-window.groupByVisitedCount = groupByVisitedCount;
+window.groupTravelsByCountryCount = groupTravelsByCountryCount;
 window.getAllCountries = getAllCountries;
 window.filterByCountry = filterByCountry;
 window.groupTravelersByCountry = groupTravelersByCountry;
