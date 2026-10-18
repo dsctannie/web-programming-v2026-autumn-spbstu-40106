@@ -42,7 +42,7 @@ button:hover {
   background: #555;
 }
 
-[data-testid="entity-card"] {
+[data-testid='entity-card'] {
   background: #fff;
   border: 2px solid #333;
   border-radius: 8px;
@@ -50,16 +50,16 @@ button:hover {
   margin-bottom: 15px;
 }
 
-[data-testid="entity-card"] h3 {
+[data-testid='entity-card'] h3 {
   margin: 0 0 10px;
 }
 
-[data-testid="entity-card"] ul {
+[data-testid='entity-card'] ul {
   margin: 0 0 10px;
   padding-left: 20px;
 }
 
-[data-testid="entity-card"] button {
+[data-testid='entity-card'] button {
   margin-right: 8px;
   font-size: 14px;
 }
