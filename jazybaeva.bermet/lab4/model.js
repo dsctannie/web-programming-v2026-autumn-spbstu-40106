@@ -23,11 +23,14 @@ export class Travel {
 export function groupTravelsByCountryCount(travels) {
   const result = {};
   for (const travel of travels) {
-    const count = travel.visitedCount !== undefined ? travel.visitedCount : 0;
-    if (!result[count]) {
-      result[count] = [];
+    const count = Array.isArray(travel.visitedCountries)
+      ? travel.visitedCountries.length
+      : travel.visitedCount || 0;
+    const key = String(count);
+    if (!result[key]) {
+      result[key] = [];
     }
-    result[count].push(travel);
+    result[key].push(travel);
   }
   return result;
 }
@@ -67,7 +70,9 @@ export function groupTravelersByCountry(travels) {
 
 export function findTravelsAboveCountryCount(travels, n) {
   return travels.filter((travel) => {
-    const count = travel.visitedCount !== undefined ? travel.visitedCount : 0;
+    const count = Array.isArray(travel.visitedCountries)
+      ? travel.visitedCountries.length
+      : travel.visitedCount || 0;
     return count > n;
   });
 }
