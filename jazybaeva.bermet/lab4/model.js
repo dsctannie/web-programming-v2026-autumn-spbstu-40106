@@ -23,7 +23,7 @@ export class Travel {
 export function groupTravelsByCountryCount(travels) {
   const result = {};
   for (const travel of travels) {
-    const key = travel.visitedCount;
+    const key = String(travel.visitedCount);
     if (!result[key]) {
       result[key] = [];
     }
