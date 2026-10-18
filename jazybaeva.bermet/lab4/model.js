@@ -49,7 +49,9 @@ export function getUniqueCountries(travels) {
 
 export function findTravelsByCountry(travels, country) {
   return travels.filter(
-    (travel) => Array.isArray(travel.visitedCountries) && travel.visitedCountries.includes(country),
+    (travel) =>
+      Array.isArray(travel.visitedCountries) &&
+      travel.visitedCountries.includes(country),
   );
 }
 
