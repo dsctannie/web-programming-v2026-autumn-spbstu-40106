@@ -21,16 +21,13 @@ export class Travel {
 }
 
 export function groupTravelsByCountryCount(travels) {
-  const result = { 1: [] };
+  const result = {};
   for (const travel of travels) {
     const count = Array.isArray(travel.visitedCountries) ? travel.visitedCountries.length : 0;
     if (!result[count]) {
       result[count] = [];
     }
     result[count].push(travel);
-  }
-  if (result[1].length === 0) {
-    result[1].push({ id: 999, travelerName: 'Mock', visitedCountries: ['Mock'] });
   }
   return result;
 }
