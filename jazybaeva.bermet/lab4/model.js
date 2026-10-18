@@ -23,7 +23,12 @@ export class Travel {
 export function groupTravelsByCountryCount(travels) {
   const result = {};
   for (const travel of travels) {
-    const count = travel.visitedCountries ? travel.visitedCountries.length : 0;
+    let count = 0;
+    if (travel.visitedCount !== undefined) {
+      count = travel.visitedCount;
+    } else if (Array.isArray(travel.visitedCountries)) {
+      count = travel.visitedCountries.length;
+    }
     const key = String(count);
     if (!result[key]) {
       result[key] = [];
@@ -36,7 +41,7 @@ export function groupTravelsByCountryCount(travels) {
 export function getAllCountries(travels) {
   const set = new Set();
   for (const travel of travels) {
-    if (travel.visitedCountries) {
+    if (Array.isArray(travel.visitedCountries)) {
       for (const country of travel.visitedCountries) {
         set.add(country);
       }
@@ -48,14 +53,15 @@ export function getAllCountries(travels) {
 export function filterByCountry(travels, country) {
   return travels.filter(
     (travel) =>
-      travel.visitedCountries && travel.visitedCountries.includes(country),
+      Array.isArray(travel.visitedCountries) &&
+      travel.visitedCountries.includes(country),
   );
 }
 
 export function groupTravelersByCountry(travels) {
   const result = {};
   for (const travel of travels) {
-    if (travel.visitedCountries) {
+    if (Array.isArray(travel.visitedCountries)) {
       for (const country of travel.visitedCountries) {
         if (!result[country]) {
           result[country] = [];
@@ -68,7 +74,13 @@ export function groupTravelersByCountry(travels) {
 }
 
 export function filterByMinCountries(travels, n) {
-  return travels.filter(
-    (travel) => travel.visitedCountries && travel.visitedCountries.length > n,
-  );
+  return travels.filter((travel) => {
+    let count = 0;
+    if (travel.visitedCount !== undefined) {
+      count = travel.visitedCount;
+    } else if (Array.isArray(travel.visitedCountries)) {
+      count = travel.visitedCountries.length;
+    }
+    return count > n;
+  });
 }
