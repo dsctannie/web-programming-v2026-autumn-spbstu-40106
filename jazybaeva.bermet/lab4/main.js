@@ -24,7 +24,7 @@ function loadFromStorage() {
   try {
     const data = JSON.parse(raw);
     travels = data.map((item) => new Travel(item.id, item.travelerName, item.visitedCountries));
-  } catch (e) {
+  } catch {
     travels = [];
   }
 }
