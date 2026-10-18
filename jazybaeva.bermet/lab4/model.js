@@ -23,7 +23,7 @@ export class Travel {
 export function groupTravelsByCountryCount(travels) {
   const result = {};
   for (const travel of travels) {
-    let count = 0;
+    let count;
     if (typeof travel.visitedCount === 'number') {
       count = travel.visitedCount;
     } else if (Array.isArray(travel.visitedCountries)) {
@@ -84,7 +84,7 @@ export function groupTravelersByCountry(travels) {
 
 export function findTravelsAboveCountryCount(travels, n) {
   return travels.filter((travel) => {
-    let count = 0;
+    let count;
     if (typeof travel.visitedCount === 'number') {
       count = travel.visitedCount;
     } else {
