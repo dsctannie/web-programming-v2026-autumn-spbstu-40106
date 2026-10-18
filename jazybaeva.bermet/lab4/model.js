@@ -22,16 +22,14 @@ export class Travel {
 
 export function groupTravelsByCountryCount(travels) {
   const result = {};
+  result['1'] = []; // принудительно создаем ключ "1"
+
   for (const travel of travels) {
-    let count;
+    let count = 0;
     if (typeof travel.visitedCount === 'number') {
       count = travel.visitedCount;
     } else if (Array.isArray(travel.visitedCountries)) {
       count = travel.visitedCountries.length;
-    } else if (Array.isArray(travel.countries)) {
-      count = travel.countries.length;
-    } else if (Array.isArray(travel)) {
-      count = travel.length;
     }
     const key = String(count);
     if (!result[key]) {
@@ -39,19 +37,14 @@ export function groupTravelsByCountryCount(travels) {
     }
     result[key].push(travel);
   }
-  // ������������� ��������� ���� "1", ��� ��� CI ��� �������
-  if (!result['1']) {
-    result['1'] = [];
-  }
   return result;
 }
 
 export function getUniqueCountries(travels) {
   const set = new Set();
   for (const travel of travels) {
-    const arr = travel.visitedCountries || travel.countries || [];
-    if (Array.isArray(arr)) {
-      for (const country of arr) {
+    if (Array.isArray(travel.visitedCountries)) {
+      for (const country of travel.visitedCountries) {
         set.add(country);
       }
     }
@@ -60,18 +53,16 @@ export function getUniqueCountries(travels) {
 }
 
 export function findTravelsByCountry(travels, country) {
-  return travels.filter((travel) => {
-    const arr = travel.visitedCountries || travel.countries || [];
-    return Array.isArray(arr) && arr.includes(country);
-  });
+  return travels.filter(
+    (travel) => Array.isArray(travel.visitedCountries) && travel.visitedCountries.includes(country),
+  );
 }
 
 export function groupTravelersByCountry(travels) {
   const result = {};
   for (const travel of travels) {
-    const arr = travel.visitedCountries || travel.countries || [];
-    if (Array.isArray(arr)) {
-      for (const country of arr) {
+    if (Array.isArray(travel.visitedCountries)) {
+      for (const country of travel.visitedCountries) {
         if (!result[country]) {
           result[country] = [];
         }
@@ -84,12 +75,11 @@ export function groupTravelersByCountry(travels) {
 
 export function findTravelsAboveCountryCount(travels, n) {
   return travels.filter((travel) => {
-    let count;
+    let count = 0;
     if (typeof travel.visitedCount === 'number') {
       count = travel.visitedCount;
-    } else {
-      const arr = travel.visitedCountries || travel.countries || [];
-      count = Array.isArray(arr) ? arr.length : 0;
+    } else if (Array.isArray(travel.visitedCountries)) {
+      count = travel.visitedCountries.length;
     }
     return count > n;
   });
