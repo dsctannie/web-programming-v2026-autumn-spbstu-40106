@@ -1,9 +1,9 @@
 import {
   Travel,
-  getAllCountries,
-  filterByCountry,
+  getUniqueCountries,
+  findTravelsByCountry,
   groupTravelersByCountry,
-  filterByMinCountries,
+  findTravelsAboveCountryCount,
 } from './model.js';
 
 const STORAGE_KEY = 'travels';
@@ -132,8 +132,8 @@ countryForm.addEventListener('submit', (e) => {
 loadFromStorage();
 render();
 
-window.getAllCountries = getAllCountries;
-window.filterByCountry = filterByCountry;
+window.getUniqueCountries = getUniqueCountries;
+window.findTravelsByCountry = findTravelsByCountry;
 window.groupTravelersByCountry = groupTravelersByCountry;
-window.filterByMinCountries = filterByMinCountries;
+window.findTravelsAboveCountryCount = findTravelsAboveCountryCount;
 window.Travel = Travel;

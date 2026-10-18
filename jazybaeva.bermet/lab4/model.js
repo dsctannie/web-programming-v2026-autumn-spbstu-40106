@@ -23,12 +23,12 @@ export class Travel {
 export function groupTravelsByCountryCount(travels) {
   const result = {};
   for (const travel of travels) {
-    let count = 0;
-    if (travel.visitedCount !== undefined) {
-      count = travel.visitedCount;
-    } else if (Array.isArray(travel.visitedCountries)) {
-      count = travel.visitedCountries.length;
-    }
+    const count =
+      travel.visitedCount !== undefined
+        ? travel.visitedCount
+        : travel.visitedCountries
+          ? travel.visitedCountries.length
+          : 0;
     const key = String(count);
     if (!result[key]) {
       result[key] = [];
@@ -38,7 +38,7 @@ export function groupTravelsByCountryCount(travels) {
   return result;
 }
 
-export function getAllCountries(travels) {
+export function getUniqueCountries(travels) {
   const set = new Set();
   for (const travel of travels) {
     if (Array.isArray(travel.visitedCountries)) {
@@ -50,7 +50,7 @@ export function getAllCountries(travels) {
   return Array.from(set);
 }
 
-export function filterByCountry(travels, country) {
+export function findTravelsByCountry(travels, country) {
   return travels.filter(
     (travel) =>
       Array.isArray(travel.visitedCountries) &&
@@ -73,14 +73,14 @@ export function groupTravelersByCountry(travels) {
   return result;
 }
 
-export function filterByMinCountries(travels, n) {
+export function findTravelsAboveCountryCount(travels, n) {
   return travels.filter((travel) => {
-    let count = 0;
-    if (travel.visitedCount !== undefined) {
-      count = travel.visitedCount;
-    } else if (Array.isArray(travel.visitedCountries)) {
-      count = travel.visitedCountries.length;
-    }
+    const count =
+      travel.visitedCount !== undefined
+        ? travel.visitedCount
+        : travel.visitedCountries
+          ? travel.visitedCountries.length
+          : 0;
     return count > n;
   });
 }
