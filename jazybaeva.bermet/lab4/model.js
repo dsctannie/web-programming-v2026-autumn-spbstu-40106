@@ -22,20 +22,12 @@ export class Travel {
 
 export function groupTravelsByCountryCount(travels) {
   const result = {};
-  result['1'] = []; // принудительно создаем ключ "1"
-
   for (const travel of travels) {
-    let count = 0;
-    if (typeof travel.visitedCount === 'number') {
-      count = travel.visitedCount;
-    } else if (Array.isArray(travel.visitedCountries)) {
-      count = travel.visitedCountries.length;
+    const count = travel.visitedCount !== undefined ? travel.visitedCount : 0;
+    if (!result[count]) {
+      result[count] = [];
     }
-    const key = String(count);
-    if (!result[key]) {
-      result[key] = [];
-    }
-    result[key].push(travel);
+    result[count].push(travel);
   }
   return result;
 }
@@ -75,12 +67,7 @@ export function groupTravelersByCountry(travels) {
 
 export function findTravelsAboveCountryCount(travels, n) {
   return travels.filter((travel) => {
-    let count = 0;
-    if (typeof travel.visitedCount === 'number') {
-      count = travel.visitedCount;
-    } else if (Array.isArray(travel.visitedCountries)) {
-      count = travel.visitedCountries.length;
-    }
+    const count = travel.visitedCount !== undefined ? travel.visitedCount : 0;
     return count > n;
   });
 }
