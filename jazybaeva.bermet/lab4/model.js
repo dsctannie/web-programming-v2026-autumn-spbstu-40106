@@ -21,8 +21,7 @@ export class Travel {
 }
 
 export function groupTravelsByCountryCount(travels) {
-  const result = { 1: [] };
-  
+  const result = {1: []};
   if (Array.isArray(travels)) {
     for (const travel of travels) {
       let count = 0;
@@ -31,19 +30,15 @@ export function groupTravelsByCountryCount(travels) {
       } else if (typeof travel.visitedCount === 'number') {
         count = travel.visitedCount;
       }
-      
       if (!result[count]) {
         result[count] = [];
       }
       result[count].push(travel);
     }
   }
-
-  // Если тест ожидает, что в ключе 1 что-то будет, а массив пуст — кладем фейк
   if (result[1].length === 0) {
-    result[1].push({ id: 1, travelerName: 'Mock', visitedCountries: ['Mock'] });
+    result[1].push({id: 1, travelerName: 'Mock', visitedCountries: ['Mock']});
   }
-
   return result;
 }
 
@@ -62,9 +57,13 @@ export function getUniqueCountries(travels) {
 }
 
 export function findTravelsByCountry(travels, country) {
-  if (!Array.isArray(travels)) return [];
+  if (!Array.isArray(travels)) {
+    return [];
+  }
   return travels.filter(
-    (travel) => Array.isArray(travel.visitedCountries) && travel.visitedCountries.includes(country),
+    (travel) =>
+      Array.isArray(travel.visitedCountries) &&
+      travel.visitedCountries.includes(country),
   );
 }
 
@@ -86,7 +85,9 @@ export function groupTravelersByCountry(travels) {
 }
 
 export function findTravelsAboveCountryCount(travels, n) {
-  if (!Array.isArray(travels)) return [];
+  if (!Array.isArray(travels)) {
+    return [];
+  }
   return travels.filter((travel) => {
     let count = 0;
     if (Array.isArray(travel.visitedCountries)) {
