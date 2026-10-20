@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.css';
 
@@ -72,7 +72,9 @@ function App() {
           onChange={(e) => setTag(e.target.value)}
           data-testid="note-tag"
         />
-        <button type="submit" data-testid="add-note">Добавить заметку</button>
+        <button type="submit" data-testid="add-note">
+          Добавить заметку
+        </button>
       </form>
 
       <div className="filters">
@@ -83,10 +85,16 @@ function App() {
           onChange={(e) => setSearch(e.target.value)}
           data-testid="search"
         />
-        <select value={filterTag} onChange={(e) => setFilterTag(e.target.value)} data-testid="filter-tag">
+        <select
+          value={filterTag}
+          onChange={(e) => setFilterTag(e.target.value)}
+          data-testid="filter-tag"
+        >
           <option value="">Все теги</option>
           {allTags.map((t) => (
-            <option key={t} value={t}>{t}</option>
+            <option key={t} value={t}>
+              {t}
+            </option>
           ))}
         </select>
       </div>
@@ -101,7 +109,12 @@ function App() {
               <span className="tag">{note.tag}</span>
               <span>{note.date}</span>
             </div>
-            <button onClick={() => deleteNote(note.id)} data-testid="delete-note">Удалить</button>
+            <button
+              onClick={() => deleteNote(note.id)}
+              data-testid="delete-note"
+            >
+              Удалить
+            </button>
           </div>
         ))}
       </div>
