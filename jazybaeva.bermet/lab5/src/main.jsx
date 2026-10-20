@@ -75,14 +75,14 @@ function App() {
           placeholder="Текст заметки"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          data-testid="note-text"
+          data-testid="note-content"
         />
         <input
           type="text"
           placeholder="Тег (необязательно)"
           value={tag}
           onChange={(e) => setTag(e.target.value)}
-          data-testid="input-tag"
+          data-testid="note-tag"
         />
         <button type="submit" data-testid="note-add">
           Добавить заметку
@@ -95,7 +95,7 @@ function App() {
           placeholder="Поиск по заметкам..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          data-testid="search"
+          data-testid="note-search"
         />
         <select
           value={filterTag}
