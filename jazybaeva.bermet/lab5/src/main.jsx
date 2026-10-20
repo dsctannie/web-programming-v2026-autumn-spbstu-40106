@@ -5,7 +5,17 @@ import './styles.css';
 function App() {
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem('notes');
-    return saved ? JSON.parse(saved) : [];
+    return saved
+      ? JSON.parse(saved)
+      : [
+          {
+            id: 1,
+            title: 'Добро пожаловать',
+            text: 'Это ваша первая заметка. Вы можете удалить её или создать новую.',
+            tag: 'старт',
+            date: new Date().toLocaleDateString(),
+          },
+        ];
   });
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
@@ -72,7 +82,7 @@ function App() {
           placeholder="Тег (необязательно)"
           value={tag}
           onChange={(e) => setTag(e.target.value)}
-          data-testid="note-tag"
+          data-testid="input-tag"
         />
         <button type="submit" data-testid="add-note">
           Добавить заметку
