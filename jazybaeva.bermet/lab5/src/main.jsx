@@ -1,31 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.css';
 
 function App() {
-  const [notes, setNotes] = useState(() => {
-    const saved = localStorage.getItem('notes');
-    return saved
-      ? JSON.parse(saved)
-      : [
-          {
-            id: 1,
-            title: 'Добро пожаловать',
-            text: 'Это ваша первая заметка.',
-            tag: 'старт',
-            date: new Date().toLocaleDateString(),
-          },
-        ];
-  });
+  const [notes, setNotes] = useState([
+    {
+      id: 1,
+      title: 'Добро пожаловать',
+      text: 'Это ваша первая заметка.',
+      tag: 'старт',
+      date: new Date().toLocaleDateString(),
+    },
+  ]);
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const [tag, setTag] = useState('');
   const [search, setSearch] = useState('');
   const [filterTag, setFilterTag] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(notes));
-  }, [notes]);
 
   const addNote = () => {
     const newNote = {
@@ -80,7 +71,7 @@ function App() {
           onChange={(e) => setTag(e.target.value)}
           data-testid="note-tag"
         />
-        <button onClick={addNote} data-testid="note-add">
+        <button type="button" onClick={addNote} data-testid="note-add">
           Добавить заметку
         </button>
       </div>
@@ -118,6 +109,7 @@ function App() {
               <span>{note.date}</span>
             </div>
             <button
+              type="button"
               onClick={() => deleteNote(note.id)}
               data-testid="delete-note"
             >
