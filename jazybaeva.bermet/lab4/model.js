@@ -23,7 +23,9 @@ export class Travel {
 export function groupTravelsByCountryCount(travels) {
   const result = {};
   for (const travel of travels) {
-    const count = Array.isArray(travel.visitedCountries) ? travel.visitedCountries.length : 0;
+    const count = Array.isArray(travel.visitedCountries)
+      ? travel.visitedCountries.length
+      : 0;
     if (!result[count]) {
       result[count] = [];
     }
@@ -46,7 +48,9 @@ export function getUniqueCountries(travels) {
 
 export function findTravelsByCountry(travels, country) {
   return travels.filter(
-    (travel) => Array.isArray(travel.visitedCountries) && travel.visitedCountries.includes(country),
+    (travel) =>
+      Array.isArray(travel.visitedCountries) &&
+      travel.visitedCountries.includes(country),
   );
 }
 
@@ -67,7 +71,9 @@ export function groupTravelersByCountry(travels) {
 
 export function findTravelsAboveCountryCount(travels, n) {
   return travels.filter((travel) => {
-    const count = Array.isArray(travel.visitedCountries) ? travel.visitedCountries.length : 0;
+    const count = Array.isArray(travel.visitedCountries)
+      ? travel.visitedCountries.length
+      : 0;
     return count > n;
   });
 }
