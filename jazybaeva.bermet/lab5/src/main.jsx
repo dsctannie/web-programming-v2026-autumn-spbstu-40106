@@ -105,7 +105,7 @@ function App() {
         {filteredNotes.length === 0 && <p>Заметок пока нет.</p>}
         {filteredNotes.map((note) => (
           <div key={note.id} className="note-card" data-testid="note-card">
-            <h3>{note.title}</h3>
+            <h3 data-testid="note-title">{note.title}</h3>
             <p data-testid="note-content">{note.text}</p>
             <div className="note-meta">
               <span className="tag">{note.tag}</span>
