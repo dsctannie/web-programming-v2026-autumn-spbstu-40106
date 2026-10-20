@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.css';
 
@@ -59,13 +59,13 @@ function App() {
           placeholder="Заголовок"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          data-testid="note-title"
+          data-testid="input-title"
         />
         <textarea
           placeholder="Текст заметки"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          data-testid="note-text"
+          data-testid="input-text"
         />
         <input
           type="text"
