@@ -11,7 +11,7 @@ function App() {
           {
             id: 1,
             title: 'Добро пожаловать',
-            text: 'Это ваша первая заметка. Вы можете удалить её или создать новую.',
+            text: 'Это ваша первая заметка.',
             tag: 'старт',
             date: new Date().toLocaleDateString(),
           },
@@ -27,8 +27,7 @@ function App() {
     localStorage.setItem('notes', JSON.stringify(notes));
   }, [notes]);
 
-  const addNote = (e) => {
-    e.preventDefault();
+  const addNote = () => {
     const newNote = {
       id: Date.now(),
       title: title.trim() || 'Без названия',
@@ -60,7 +59,7 @@ function App() {
     <main data-testid="app" className="app">
       <h1>Мои заметки</h1>
 
-      <form onSubmit={addNote} className="form">
+      <div className="form">
         <input
           type="text"
           placeholder="Заголовок"
@@ -81,10 +80,10 @@ function App() {
           onChange={(e) => setTag(e.target.value)}
           data-testid="note-tag"
         />
-        <button type="submit" data-testid="note-add">
+        <button onClick={addNote} data-testid="note-add">
           Добавить заметку
         </button>
-      </form>
+      </div>
 
       <div className="filters">
         <input
