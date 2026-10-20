@@ -69,13 +69,13 @@ function App() {
           placeholder="Заголовок"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          data-testid="input-title"
+          data-testid="note-title" // 👈 CI ищет поле ввода здесь
         />
         <textarea
           placeholder="Текст заметки"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          data-testid="input-text"
+          data-testid="note-text" // 👈 CI ищет текст здесь
         />
         <input
           type="text"
@@ -84,7 +84,9 @@ function App() {
           onChange={(e) => setTag(e.target.value)}
           data-testid="input-tag"
         />
-        <button type="submit" data-testid="add-note">
+        <button type="submit" data-testid="note-add">
+          {' '}
+          {/* 👈 CI ищет кнопку здесь */}
           Добавить заметку
         </button>
       </form>
@@ -115,8 +117,9 @@ function App() {
         {filteredNotes.length === 0 && <p>Заметок пока нет.</p>}
         {filteredNotes.map((note) => (
           <div key={note.id} className="note-card" data-testid="note-card">
-            <h3 data-testid="note-title">{note.title}</h3>
-            <p data-testid="note-content">{note.text}</p>
+            <h3 data-testid="card-title">{note.title}</h3>{' '}
+            {/* 👈 поменяли ID */}
+            <p data-testid="card-content">{note.text}</p> {/* 👈 поменяли ID */}
             <div className="note-meta">
               <span className="tag">{note.tag}</span>
               <span>{note.date}</span>
