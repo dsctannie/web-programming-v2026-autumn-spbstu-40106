@@ -19,7 +19,9 @@ function App() {
 
   const addNote = (e) => {
     e.preventDefault();
-    if (!title.trim() || !text.trim()) return;
+    if (!title.trim() || !text.trim()) {
+      return;
+    }
     const newNote = {
       id: Date.now(),
       title: title.trim(),
@@ -104,7 +106,7 @@ function App() {
         {filteredNotes.map((note) => (
           <div key={note.id} className="note-card" data-testid="note-card">
             <h3>{note.title}</h3>
-            <p>{note.text}</p>
+            <p data-testid="note-content">{note.text}</p>
             <div className="note-meta">
               <span className="tag">{note.tag}</span>
               <span>{note.date}</span>
