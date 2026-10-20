@@ -19,7 +19,9 @@ function App() {
 
   const addNote = (e) => {
     e.preventDefault();
-    if (!title.trim() || !text.trim()) return;
+    if (!title.trim() || !text.trim()) {
+  return;
+  }
     const newNote = {
       id: Date.now(),
       title: title.trim(),
