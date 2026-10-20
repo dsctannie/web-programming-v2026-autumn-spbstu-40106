@@ -111,10 +111,14 @@ function App() {
         </select>
       </div>
 
-      <div className="notes-list" data-testid="notes-list">
+      <div className="notes-list" data-testid="note-list">
+        {' '}
+        {/* 👈 поменяли на note-list */}
         {filteredNotes.length === 0 && <p>Заметок пока нет.</p>}
         {filteredNotes.map((note) => (
-          <div key={note.id} className="note-card" data-testid="note-card">
+          <div key={note.id} className="note-card" data-testid="note-item">
+            {' '}
+            {/* 👈 поменяли на note-item */}
             <h3 data-testid="note-title">{note.title}</h3>
             <p data-testid="note-content">{note.text}</p>
             <div className="note-meta">
