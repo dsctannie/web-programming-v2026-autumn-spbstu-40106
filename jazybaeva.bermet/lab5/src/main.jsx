@@ -29,13 +29,10 @@ function App() {
 
   const addNote = (e) => {
     e.preventDefault();
-    if (!title.trim() || !text.trim()) {
-      return;
-    }
     const newNote = {
       id: Date.now(),
-      title: title.trim(),
-      text: text.trim(),
+      title: title.trim() || 'Без названия',
+      text: text.trim() || 'Пустая заметка',
       tag: tag.trim() || 'без тега',
       date: new Date().toLocaleDateString(),
     };
@@ -112,13 +109,9 @@ function App() {
       </div>
 
       <div className="notes-list" data-testid="note-list">
-        {' '}
-        {/* 👈 поменяли на note-list */}
         {filteredNotes.length === 0 && <p>Заметок пока нет.</p>}
         {filteredNotes.map((note) => (
           <div key={note.id} className="note-card" data-testid="note-item">
-            {' '}
-            {/* 👈 поменяли на note-item */}
             <h3 data-testid="note-title">{note.title}</h3>
             <p data-testid="note-content">{note.text}</p>
             <div className="note-meta">
